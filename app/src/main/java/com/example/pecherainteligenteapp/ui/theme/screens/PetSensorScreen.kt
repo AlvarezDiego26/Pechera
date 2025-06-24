@@ -34,6 +34,7 @@ fun PetSensorScreen() {
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
@@ -44,39 +45,40 @@ fun PetSensorScreen() {
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Text("🧠 ECG", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
-                    Text("Valor: ${data.ecg} bpm")
+                    Text("Valor: ${data.ecg_raw} bpm")
                 }
             }
 
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFF1F8E9))
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFFFEBEE))
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text("📦 Acelerómetro", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
-                    Text("AcX: ${data.AcX}")
-                    Text("AcY: ${data.AcY}")
-                    Text("AcZ: ${data.AcZ}")
+                    Text("🌡️ Temperatura", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+                    Text(
+                        text = if (data.temperatura_celsius != null)
+                            "${data.temperatura_celsius} °C"
+                        else
+                            "Sensor no detectado"
+                    )
                 }
             }
 
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFFFF3E0))
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFE8F5E9))
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text("🎯 Giroscopio", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
-                    Text("GyX: ${data.GyX}")
-                    Text("GyY: ${data.GyY}")
-                    Text("GyZ: ${data.GyZ}")
+                    Text("🏃 Movimiento", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+                    Text("Estado: ${data.movimiento}")
                 }
             }
 
