@@ -53,17 +53,31 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // Coroutines (para ViewModel y procesamiento en background)
+    // ViewModel para Jetpack Compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+
+    // Corrutinas
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
 
-    // OkHttp para WebSocket
+    // OkHttp para WebSocket (usado por STOMP)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
-    // org.json para parseo de mensajes JSON
+    // org.json para parsear JSON del WebSocket
     implementation("org.json:json:20240303")
 
-    // Tests
+    // STOMP (WebSocket con protocolo STOMP)
+    implementation("org.java-websocket:Java-WebSocket:1.5.3")
+    implementation("com.github.NaikSoftware:StompProtocolAndroid:1.6.6")
+
+    // RxJava para STOMP
+    implementation("io.reactivex.rxjava2:rxjava:2.2.21")
+    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
+
+    // 📈 MPAndroidChart para el gráfico ECG
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -73,17 +87,5 @@ dependencies {
     // Debug y Preview
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    // ViewModel para Jetpack Compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
-
-    // STOMP para WebSocket
-    implementation("org.java-websocket:Java-WebSocket:1.5.3")
-    implementation("com.github.NaikSoftware:StompProtocolAndroid:1.6.6")
-
-    // RxJava (necesario para Stomp)
-    implementation("io.reactivex.rxjava2:rxjava:2.2.21")
-    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
-
-
 }
+

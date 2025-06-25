@@ -12,6 +12,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pecherainteligenteapp.viewmodel.SensorViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.pecherainteligenteapp.ui.theme.components.ECGChart
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,9 +47,13 @@ fun PetSensorScreen() {
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Text("🧠 ECG", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
-                    Text("Valor: ${data.ecg_raw} bpm")
+                    Text("Valor: ${data.ecg_raw} unidades") // bpm si lo filtras
+
+                    // 👉 Aquí va el gráfico
+                    ECGChart(ecgValue = data.ecg_raw)
                 }
             }
+
 
             Card(
                 modifier = Modifier.fillMaxWidth(),
