@@ -23,7 +23,7 @@ class SensorViewModel : ViewModel() {
 
     fun startWebSocket() {
         // Nota: Este es el endpoint real de STOMP (ver configuración backend)
-        webSocketClient.connect("ws://192.168.1.3:8080/ws/websocket")
+        webSocketClient.connect("ws://192.168.43.219:8080/ws")
     }
 
     fun stopWebSocket() {
