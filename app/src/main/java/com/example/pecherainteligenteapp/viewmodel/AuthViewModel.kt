@@ -9,6 +9,10 @@ import kotlinx.coroutines.launch
 
 class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
 
+    // ✅ NUEVO: Guardar el ID del usuario logueado
+    var loggedInUserId: Long? = null
+        private set
+
     fun register(
         user: UserRegisterDTO,
         onSuccess: (UserResponse) -> Unit,
@@ -31,10 +35,17 @@ class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
         viewModelScope.launch {
             val result = repository.login(email, password)
             result
-                .onSuccess { user -> onSuccess(user) }
-                .onFailure { error -> onError(error.message ?: "Error desconocido") }
+                .onSuccess { user ->
+                    // ✅ GUARDAMOS EL ID DEL USUARIO
+                    loggedInUserId = user.id
+                    onSuccess(user)
+                }
+                .onFailure { error ->
+                    onError(error.message ?: "Error desconocido")
+                }
         }
     }
+
     fun confirmAccount(
         token: String,
         onSuccess: () -> Unit,
@@ -42,12 +53,11 @@ class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
     ) {
         viewModelScope.launch {
             try {
-                val response = repository.confirmAccount(token)
+                repository.confirmAccount(token)
                 onSuccess()
             } catch (e: Exception) {
                 onError(e.message ?: "Error al confirmar la cuenta")
             }
         }
     }
-
 }

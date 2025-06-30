@@ -13,13 +13,13 @@ class SensorRepository {
         try {
             val json = JSONObject(message)
 
-            val ecg = json.optInt("ecg_raw", 0)
-            val temp = json.optDouble("temperatura_celsius", Double.NaN).toFloat()
+            val ecg = json.optInt("ecgRaw", 0)
+            val temp = json.optDouble("temperatura", Double.NaN).toFloat()
             val movimiento = json.optString("movimiento", "Desconocido")
 
             val sensorData = SensorData(
-                ecg_raw = ecg,
-                temperatura_celsius = if (!temp.isNaN()) temp else null,
+                ecgRaw = ecg,
+                temperatura = if (!temp.isNaN()) temp else null,
                 movimiento = movimiento
             )
 
